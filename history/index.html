@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        /*history.back();
+        history.replace();
+        history.forward();
+        history.go();
+
+
+        history.pushState({data:10},"","/aa");*/
+    </script>
+</head>
+<body>
+    <span>
+        span
+    </span>
+    <div>
+        div
+    </div>
+    <div class="box">
+        1
+    </div>
+    <script>
+        var span=document.querySelector("span");
+        var div=document.querySelector("div");
+        var box=document.querySelector(".box");
+        span.onclick=function () {
+            history.pushState({path:"span"},"","span");
+            fetch("./span"+".html").then(function (e) {
+                return e.text();
+            }).then(function (e) {
+                box.innerHTML=e;
+            })
+        }
+        div.onclick=function () {
+            history.pushState({path:"div"},"","div");
+            fetch("./div"+".html").then(function (e) {
+                return e.text();
+            }).then(function (e) {
+                box.innerHTML=e;
+            })
+        }
+        window.onpopstate=function () {
+            path = history.state.path;
+            console.log(path)
+            fetch("./"+path+".html").then(function (e) {
+                return e.text();
+            }).then(function (e) {
+                box.innerHTML=e;
+            })
+        }
+    </script>
+</body>
+</html>
